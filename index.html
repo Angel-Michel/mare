@@ -43,7 +43,6 @@
       padding: 22px 18px 40px;
     }
 
-    /* Destellos de fondo */
     body::before {
       content: "";
       position: fixed;
@@ -58,7 +57,6 @@
       z-index: 0;
     }
 
-    /* Capa de lluvia infinita de ramos */
     #jardin-infinito {
       position: fixed;
       inset: 0;
@@ -88,7 +86,6 @@
       }
     }
 
-    /* Ramos que brotan hacia arriba al tocar */
     .ramo-explosion {
       position: fixed;
       pointer-events: none;
@@ -112,7 +109,6 @@
       }
     }
 
-    /* Contenedor principal */
     .escenario {
       position: relative;
       z-index: 10;
@@ -156,7 +152,7 @@
       max-width: 375px;
     }
 
-    /* Mini reproductor elegante */
+    /* Mini reproductor */
     .barra-musica {
       width: 100%;
       background: rgba(22, 4, 13, 0.78);
@@ -209,7 +205,7 @@
 
     .musica-textos strong {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
       color: var(--gold-bright);
     }
 
@@ -232,7 +228,7 @@
       flex-shrink: 0;
     }
 
-    /* Ramo Central Interactivo */
+    /* Altar de ramos */
     .altar-ramos {
       position: relative;
       width: 100%;
@@ -305,7 +301,7 @@
       transform: scale(0.96);
     }
 
-    /* Botón Principal de la Carta */
+    /* Botón de la Carta */
     .btn-abrir-carta {
       width: 100%;
       padding: 17px 22px;
@@ -469,15 +465,15 @@
       Hoy no quería mandarte un mensaje cualquiera. Quería llenarte la pantalla de flores y decirte con total sinceridad lo que siento por ti.
     </p>
 
-    <!-- Barra musical -->
+    <!-- Barra musical con Brillas -->
     <div class="barra-musica">
       <div class="musica-info">
         <div class="ondas" id="ondas">
           <span></span><span></span><span></span><span></span>
         </div>
         <div class="musica-textos">
-          <strong>Melodía para mi princesa</strong>
-          <small id="sub-musica">Toca reproducir mientras lees</small>
+          <strong>Brillas · León Larregui</strong>
+          <small id="sub-musica">Dedicada a ti, mi princesa</small>
         </div>
       </div>
       <button type="button" class="btn-audio" id="btn-audio">▶ Escuchar</button>
@@ -504,21 +500,21 @@
   <!-- Modal con la carta extensa -->
   <section class="modal-carta" id="modal-carta" aria-hidden="true">
     <div class="pergamino-real">
-      <div class="sello-encabezado">👑💐🌹</div>
-      <span class="sub-carta">Sin filtros · Con el corazón en la mano</span>
+      <div class="sello-encabezado">👑💐✨</div>
+      <span class="sub-carta">Sonando: Brillas · Con el corazón en la mano</span>
       <h2>Feliz Día de la Princesa, Marely</h2>
 
       <div class="cita-destacada">
-        “Prefiero mil veces que me digan intenso por demostrar todo lo que siento, antes que quedarme con las ganas de hacerte sentir lo especial que eres para mí.”
+        “Prefiero mil veces que me digan intenso por demostrar todo lo que siento, antes que quedarme con las ganas de hacerte sentir lo mucho que brillas para mí.”
       </div>
 
-      <div class="cuerpo-carta">Marely, hoy en el Día de la Princesa quise hacerte este detalle porque te mereces todos los ramos del mundo, pero sobre todo te mereces claridad y palabras que nazcan completamente de verdad.
+      <div class="cuerpo-carta">Marely, hoy en el Día de la Princesa quise hacerte este detalle porque te mereces todos los ramos del mundo, pero sobre todo te mereces claridad, hechos y palabras que nazcan completamente de verdad.
 
-A veces la gente tiene miedo de demostrar interés por temor a parecer "intensa", pero contigo me pasa exactamente lo contrario: prefiero ser un intenso que te llena de detalles, que recuerda lo que te gusta y que busca sacarte una sonrisa, antes que fingir indiferencia cuando lo que siento por ti es tan grande.
+A veces la gente tiene miedo de demostrar interés por temor a parecer "intensa", pero contigo me pasa exactamente lo contrario: prefiero ser un intenso que te llena de detalles, que recuerda lo que te gusta y que busca sacarte una sonrisa todos los días, antes que fingir indiferencia cuando lo que siento por ti es tan grande.
 
-Quiero decírtelo sin rodeos para que no te quede ninguna duda: mis sentimientos hacia ti son completamente serios. No busco algo pasajero ni un juego de un rato; contigo quiero algo bonito, real y sincero, donde puedas sentirte tranquila, cuidada y valorada tal como eres.
+Quiero decírtelo sin rodeos para que no te quede ninguna duda: mis sentimientos hacia ti son completamente serios. No busco algo pasajero ni un juego de un rato; contigo quiero darte lo mejor de mí y construir algo bonito, real y sincero, donde puedas sentirte tranquila, cuidada y valorada tal como eres.
 
-Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me confirma que vale totalmente la pena dar lo mejor de mí por ti. Gracias por existir y por dejarme demostrarte poco a poco cuánto te quiero.</div>
+Brillas con una luz propia que hace imposible no admirarte, y tus ojos siguen siendo mi mayor debilidad. Gracias por existir y por dejarme demostrarte poco a poco cuánto te quiero.</div>
 
       <div class="promesas-grid">
         <div class="promesa-chip">💛 Sentimientos serios</div>
@@ -531,7 +527,7 @@ Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me 
     </div>
   </section>
 
-  <!-- Renombra tu canción elegida como princesa.mp4 en tu repositorio -->
+  <!-- Cambia "princesa.mp4" a "brillas.mp4" si así guardaste el archivo -->
   <audio id="audio-princesa" src="princesa.mp4" loop preload="metadata"></audio>
 
   <script>
@@ -540,15 +536,14 @@ Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me 
     const floresVariadas = ['💐', '🌹', '🌷', '🌸', '🌺', '💐', '✨'];
     let totalRamos = 100;
 
-    // Lluvia infinita continua en segundo plano
     function crearRamoFondo() {
       const ramo = document.createElement('span');
       ramo.className = 'ramo-caida';
       ramo.textContent = floresVariadas[Math.floor(Math.random() * floresVariadas.length)];
 
-      const tamano = Math.random() * 20 + 18; // 18px a 38px
+      const tamano = Math.random() * 20 + 18;
       const posX = Math.random() * 100;
-      const duracion = Math.random() * 4.5 + 5.5; // 5.5s a 10s
+      const duracion = Math.random() * 4.5 + 5.5;
       const vaiven = (Math.random() - 0.5) * 110 + 'px';
       const opacidad = Math.random() * 0.45 + 0.5;
 
@@ -562,13 +557,11 @@ Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me 
       ramo.addEventListener('animationend', () => ramo.remove());
     }
 
-    // Población inicial densa para que desde el segundo 1 esté lleno de ramos
     for (let i = 0; i < 22; i++) {
       setTimeout(crearRamoFondo, i * 160);
     }
     setInterval(crearRamoFondo, 340);
 
-    // Explosión interactiva de ramos al tocar
     function lanzarRafagaRamos(x, y, cantidad = 12) {
       totalRamos += cantidad;
       contadorEl.textContent = totalRamos;
@@ -600,17 +593,16 @@ Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me 
     const granRamoBtn = document.getElementById('gran-ramo-btn');
     const btnMasRamos = document.getElementById('btn-mas-ramos');
 
-    granRamoBtn.addEventListener('click', (e) => {
+    granRamoBtn.addEventListener('click', () => {
       const rect = granRamoBtn.getBoundingClientRect();
       lanzarRafagaRamos(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
     });
 
-    btnMasRamos.addEventListener('click', (e) => {
+    btnMasRamos.addEventListener('click', () => {
       const rect = granRamoBtn.getBoundingClientRect();
       lanzarRafagaRamos(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
     });
 
-    // Control de música
     const audio = document.getElementById('audio-princesa');
     const btnAudio = document.getElementById('btn-audio');
     const ondas = document.getElementById('ondas');
@@ -637,7 +629,6 @@ Tus ojos y tu sonrisa siguen siendo mi mayor debilidad, y cada día que pasa me 
       }
     });
 
-    // Modal de la carta
     const modalCarta = document.getElementById('modal-carta');
     const btnAbrirCarta = document.getElementById('btn-abrir-carta');
     const btnCerrarCarta = document.getElementById('btn-cerrar-carta');
