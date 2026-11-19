@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>👑 Feliz Día de la Princesa | Para Marely</title>
-  <meta property="og:title" content="💐 Feliz Día de la Princesa, Marely" />
-  <meta property="og:description" content="Un jardín infinito de ramos y una carta sin filtros hecha especialmente para ti..." />
+  <title>✨ Feliz Día de la Princesa, Marely</title>
+  <meta property="og:title" content="💐 Para mi princesa, Marely" />
+  <meta property="og:description" content="Un jardín infinito de ramos y una carta sin filtros con 'Brillas'..." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #0d0208;
-      --bg-velvet: #240615;
-      --bg-royal: #3d0a24;
-      --gold: #f5cf86;
-      --gold-bright: #ffe6b3;
-      --rose: #ff5d8f;
-      --rose-soft: #ff9ebb;
-      --glass: rgba(255, 255, 255, 0.06);
-      --glass-border: rgba(245, 207, 134, 0.3);
+      --sky-top: #060814;
+      --sky-mid: #0e132b;
+      --sky-glow: #1b173d;
+      --champagne: #f8dfa5;
+      --gold: #e5b567;
+      --blush: #ff7597;
+      --blush-soft: #ffb3c6;
+      --card-bg: rgba(15, 20, 44, 0.68);
+      --border-glow: rgba(248, 223, 165, 0.28);
     }
 
     * {
@@ -31,33 +31,30 @@
 
     body {
       min-height: 100dvh;
-      background: radial-gradient(circle at 50% 18%, var(--bg-royal), var(--bg-velvet) 52%, var(--bg-deep) 100%);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 117, 151, 0.16), transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(229, 181, 103, 0.12), transparent 45%),
+        linear-gradient(170deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-glow) 100%);
       color: #fff;
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       overflow-x: hidden;
       position: relative;
-      padding: 22px 18px 40px;
+      padding: 24px 18px 48px;
     }
 
-    body::before {
-      content: "";
+    /* Lienzo de estrellas y destellos */
+    #canvas-estrellas {
       position: fixed;
       inset: 0;
-      background-image:
-        radial-gradient(1.5px 1.5px at 18% 20%, rgba(255, 230, 179, 0.7), transparent),
-        radial-gradient(2px 2px at 80% 15%, rgba(255, 93, 143, 0.65), transparent),
-        radial-gradient(1.5px 1.5px at 85% 72%, rgba(245, 207, 134, 0.55), transparent),
-        radial-gradient(1.5px 1.5px at 20% 82%, rgba(255, 158, 187, 0.6), transparent),
-        radial-gradient(1px 1px at 52% 38%, rgba(255, 255, 255, 0.5), transparent);
       pointer-events: none;
       z-index: 0;
     }
 
-    #jardin-infinito {
+    /* Lluvia infinita de ramos */
+    #lluvia-ramos {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -65,51 +62,52 @@
       z-index: 1;
     }
 
-    .ramo-caida {
+    .ramo-flotante {
       position: absolute;
-      top: -65px;
+      top: -60px;
       user-select: none;
       will-change: transform;
-      animation: caerInfinito linear forwards;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.5));
+      animation: descenderRamo linear forwards;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.55));
     }
 
-    @keyframes caerInfinito {
+    @keyframes descenderRamo {
       0% {
-        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        transform: translate3d(0, -8vh, 0) rotate(-8deg);
       }
       50% {
-        transform: translate3d(var(--vaiven), 52vh, 0) rotate(180deg);
+        transform: translate3d(var(--oscilacion), 52vh, 0) rotate(12deg);
       }
       100% {
-        transform: translate3d(calc(var(--vaiven) * -0.6), 114vh, 0) rotate(360deg);
+        transform: translate3d(calc(var(--oscilacion) * -0.6), 112vh, 0) rotate(-10deg);
       }
     }
 
-    .ramo-explosion {
+    /* Estallido de ramos al tocar pantalla */
+    .ramo-toque {
       position: fixed;
       pointer-events: none;
-      z-index: 50;
-      font-size: 1.9rem;
-      animation: brotarRamo 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+      z-index: 60;
+      font-size: 1.8rem;
+      animation: estallarRamo 1.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      filter: drop-shadow(0 4px 12px rgba(255, 117, 151, 0.45));
     }
 
-    @keyframes brotarRamo {
+    @keyframes estallarRamo {
       0% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
+        transform: translate(-50%, -50%) scale(0.4);
       }
-      70% {
+      75% {
         opacity: 1;
       }
       100% {
         opacity: 0;
-        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.25) rotate(var(--rot));
+        transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.25) rotate(var(--rot));
       }
     }
 
-    .escenario {
+    .contenedor {
       position: relative;
       z-index: 10;
       width: 100%;
@@ -118,221 +116,269 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .cinta-real {
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 2.8px;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      background: rgba(245, 207, 134, 0.12);
-      border: 1px solid rgba(245, 207, 134, 0.32);
+    .pill-superior {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 7px 18px;
       border-radius: 999px;
-      backdrop-filter: blur(8px);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      color: var(--champagne);
+      background: rgba(248, 223, 165, 0.08);
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(10px);
     }
 
-    h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.75rem, 6.5vw, 2.35rem);
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.95rem, 7vw, 2.55rem);
       font-weight: 800;
-      line-height: 1.18;
-      background: linear-gradient(135deg, #fff8eb 0%, var(--gold) 48%, var(--rose-soft) 100%);
+      line-height: 1.14;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, var(--champagne) 52%, var(--blush-soft) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 93, 143, 0.25);
+      margin-bottom: 10px;
     }
 
-    .intro-texto {
+    header p {
       font-size: 0.94rem;
-      line-height: 1.58;
-      color: rgba(255, 255, 255, 0.86);
-      max-width: 375px;
+      line-height: 1.6;
+      color: rgba(235, 240, 255, 0.8);
+      max-width: 365px;
+      margin: 0 auto;
     }
 
-    /* Mini reproductor */
-    .barra-musica {
+    /* Reproductor estilo Vinilo Cristal */
+    .vinilo-player {
       width: 100%;
-      background: rgba(22, 4, 13, 0.78);
-      border: 1px solid var(--glass-border);
-      border-radius: 18px;
-      padding: 11px 15px;
-      backdrop-filter: blur(12px);
+      background: var(--card-bg);
+      border: 1px solid var(--border-glow);
+      border-radius: 22px;
+      padding: 14px 16px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .vinilo-fila {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
     }
 
-    .musica-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .disco-vinilo {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%, var(--champagne) 0 16%, #161b33 18% 34%, #272f56 36% 100%);
+      border: 1.5px solid rgba(248, 223, 165, 0.55);
+      box-shadow: 0 0 18px rgba(248, 223, 165, 0.25);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .disco-vinilo.girando {
+      animation: girarVinilo 4s linear infinite;
+    }
+
+    @keyframes girarVinilo {
+      to { transform: rotate(360deg); }
+    }
+
+    .vinilo-datos {
+      flex: 1;
       text-align: left;
       min-width: 0;
     }
 
-    .ondas {
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 18px;
-      width: 20px;
-      flex-shrink: 0;
+    .vinilo-datos .etiqueta {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blush-soft);
+      font-weight: 700;
     }
 
-    .ondas span {
+    .vinilo-datos strong {
       display: block;
-      width: 3px;
-      height: 6px;
-      background: var(--gold);
-      border-radius: 99px;
-      transition: height 0.2s ease;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem;
+      color: var(--champagne);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .ondas.activas span:nth-child(1) { animation: onda 0.8s infinite ease-in-out; }
-    .ondas.activas span:nth-child(2) { animation: onda 0.6s infinite ease-in-out 0.2s; }
-    .ondas.activas span:nth-child(3) { animation: onda 0.9s infinite ease-in-out 0.1s; }
-    .ondas.activas span:nth-child(4) { animation: onda 0.7s infinite ease-in-out 0.3s; }
-
-    @keyframes onda {
-      0%, 100% { height: 5px; }
-      50% { height: 18px; }
-    }
-
-    .musica-textos strong {
+    .vinilo-datos small {
       display: block;
-      font-size: 0.86rem;
-      color: var(--gold-bright);
-    }
-
-    .musica-textos small {
-      display: block;
-      font-size: 0.73rem;
+      font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.65);
     }
 
-    .btn-audio {
-      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
-      color: #240615;
+    .btn-reproducir {
+      background: linear-gradient(135deg, var(--champagne), var(--gold));
+      color: #0b0e1f;
       border: none;
       border-radius: 999px;
-      padding: 7px 14px;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.78rem;
+      padding: 9px 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       flex-shrink: 0;
-    }
-
-    /* Altar de ramos */
-    .altar-ramos {
-      position: relative;
-      width: 100%;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 26px;
-      padding: 22px 18px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.45), inset 0 0 24px rgba(255, 93, 143, 0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .gran-ramo-btn {
-      width: 122px;
-      height: 122px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(245, 207, 134, 0.45);
-      background: radial-gradient(circle, rgba(255, 93, 143, 0.25) 0%, rgba(36, 6, 21, 0.9) 75%);
-      font-size: 3.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 32px rgba(255, 93, 143, 0.32), 0 0 16px rgba(245, 207, 134, 0.25);
-      animation: flotarRamo 3.2s ease-in-out infinite;
+      box-shadow: 0 6px 18px rgba(229, 181, 103, 0.35);
       transition: transform 0.2s ease;
     }
 
-    .gran-ramo-btn:active {
-      transform: scale(0.9);
+    .btn-reproducir:active {
+      transform: scale(0.93);
     }
 
-    @keyframes flotarRamo {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
+    .progreso-barra {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 99px;
+      overflow: hidden;
+      cursor: pointer;
     }
 
-    .contador-pill {
-      background: rgba(13, 2, 8, 0.65);
-      border: 1px solid rgba(245, 207, 134, 0.24);
-      padding: 6px 14px;
+    .progreso-avance {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blush), var(--champagne));
+      border-radius: 99px;
+      transition: width 0.15s linear;
+    }
+
+    /* Escaparate del Ramo Ilustrado */
+    .vitrina-ramo {
+      width: 100%;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(14, 19, 43, 0.72));
+      border: 1px solid var(--border-glow);
+      border-radius: 28px;
+      padding: 24px 18px 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(248, 223, 165, 0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .halo-luz {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      top: 14px;
+      background: radial-gradient(circle, rgba(255, 117, 151, 0.28) 0%, rgba(248, 223, 165, 0.12) 45%, transparent 72%);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: respirarHalo 3.5s ease-in-out infinite;
+    }
+
+    @keyframes respirarHalo {
+      0%, 100% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+
+    .ramo-svg-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      animation: mecerRamo 3.8s ease-in-out infinite;
+      transition: transform 0.2s ease;
+    }
+
+    .ramo-svg-btn:active {
+      transform: scale(0.92);
+    }
+
+    @keyframes mecerRamo {
+      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+
+    .metrica-ramos {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(6, 8, 20, 0.65);
+      border: 1px solid rgba(248, 223, 165, 0.25);
+      padding: 7px 16px;
       border-radius: 999px;
-      font-size: 0.82rem;
-      color: var(--gold-bright);
-      font-weight: 600;
+      font-size: 0.83rem;
+      color: rgba(255, 255, 255, 0.88);
     }
 
-    .contador-pill strong {
-      color: var(--rose-soft);
-      font-size: 0.95rem;
+    .metrica-ramos strong {
+      color: var(--champagne);
+      font-size: 0.96rem;
     }
 
-    .btn-mas-ramos {
-      background: rgba(255, 93, 143, 0.16);
-      border: 1px solid rgba(255, 93, 143, 0.5);
-      color: #ffd6e4;
-      padding: 9px 18px;
-      border-radius: 12px;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.84rem;
+    .btn-lluvia-extra {
+      background: rgba(255, 117, 151, 0.15);
+      border: 1px solid rgba(255, 117, 151, 0.45);
+      color: #ffd6e0;
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.83rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition: all 0.2s ease;
     }
 
-    .btn-mas-ramos:active {
+    .btn-lluvia-extra:active {
       transform: scale(0.96);
+      background: rgba(255, 117, 151, 0.28);
     }
 
-    /* Botón de la Carta */
-    .btn-abrir-carta {
+    /* Botón Principal de la Carta */
+    .btn-carta-principal {
       width: 100%;
-      padding: 17px 22px;
+      padding: 18px 22px;
       border: none;
-      border-radius: 18px;
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
+      border-radius: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.06rem;
       font-weight: 800;
-      letter-spacing: 0.8px;
-      color: #240615;
-      background: linear-gradient(135deg, #fff2d6 0%, var(--gold) 50%, #f59e0b 100%);
-      box-shadow: 0 10px 30px rgba(245, 207, 134, 0.38);
+      letter-spacing: 0.4px;
+      color: #090c1d;
+      background: linear-gradient(135deg, #fff5dc 0%, var(--champagne) 50%, var(--gold) 100%);
+      box-shadow: 0 12px 32px rgba(229, 181, 103, 0.35);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      animation: latidoSuave 2.4s infinite;
+      transition: transform 0.25s ease;
     }
 
-    @keyframes latidoSuave {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.025); }
+    .btn-carta-principal:active {
+      transform: scale(0.97);
     }
 
-    /* Modal de la Carta */
-    .modal-carta {
+    /* Modal Editorial de la Carta */
+    .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(9, 1, 5, 0.9);
-      backdrop-filter: blur(12px);
+      background: rgba(4, 6, 16, 0.9);
+      backdrop-filter: blur(14px);
       z-index: 100;
       display: flex;
       align-items: center;
@@ -340,309 +386,452 @@
       padding: 16px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.35s ease;
     }
 
-    .modal-carta.abierto {
+    .modal-overlay.abierto {
       opacity: 1;
       pointer-events: auto;
     }
 
-    .pergamino-real {
+    .carta-editorial {
       width: 100%;
-      max-width: 450px;
+      max-width: 455px;
       max-height: 88dvh;
       overflow-y: auto;
-      background: linear-gradient(165deg, #2b0719 0%, #14020b 100%);
+      background: linear-gradient(165deg, #131938 0%, #090c1f 100%);
       border: 1.5px solid var(--gold);
-      border-radius: 26px;
+      border-radius: 28px;
       padding: 28px 22px;
       text-align: center;
-      box-shadow: 0 0 50px rgba(255, 93, 143, 0.28), 0 0 24px rgba(245, 207, 134, 0.2);
-      transform: translateY(22px) scale(0.95);
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 0 55px rgba(255, 117, 151, 0.22), 0 0 26px rgba(248, 223, 165, 0.18);
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
       scrollbar-width: thin;
-      scrollbar-color: rgba(245, 207, 134, 0.45) transparent;
+      scrollbar-color: rgba(248, 223, 165, 0.4) transparent;
     }
 
-    .modal-carta.abierto .pergamino-real {
+    .modal-overlay.abierto .carta-editorial {
       transform: translateY(0) scale(1);
     }
 
-    .sello-encabezado {
-      font-size: 2.5rem;
-      margin-bottom: 6px;
+    .sello-cera {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ff8fab, #c9184a);
+      border: 2px solid var(--champagne);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.65rem;
+      box-shadow: 0 6px 20px rgba(201, 24, 74, 0.45);
     }
 
-    .sub-carta {
-      font-size: 0.72rem;
+    .carta-kicker {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 2.4px;
       text-transform: uppercase;
-      letter-spacing: 2.2px;
-      color: var(--rose-soft);
+      color: var(--blush-soft);
       font-weight: 700;
       margin-bottom: 6px;
-      display: block;
     }
 
-    .pergamino-real h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      color: var(--gold);
+    .carta-editorial h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--champagne);
       margin-bottom: 16px;
-      line-height: 1.25;
+      line-height: 1.22;
     }
 
-    .cita-destacada {
+    .frase-brillas {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.18rem;
+      font-size: 1.22rem;
       line-height: 1.45;
-      color: var(--gold-bright);
-      background: rgba(245, 207, 134, 0.08);
-      border-left: 3px solid var(--gold);
-      padding: 12px 14px;
+      color: #fff6e0;
+      background: rgba(248, 223, 165, 0.08);
+      border-left: 3px solid var(--champagne);
+      padding: 12px 15px;
       border-radius: 0 14px 14px 0;
       text-align: left;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .cuerpo-carta {
+    .carta-texto {
       font-size: 0.95rem;
       line-height: 1.78;
-      color: rgba(255, 255, 255, 0.93);
+      color: rgba(240, 244, 255, 0.93);
       text-align: left;
       white-space: pre-line;
       margin-bottom: 18px;
     }
 
-    .promesas-grid {
+    .pilares-sinceros {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       margin-bottom: 18px;
     }
 
-    .promesa-chip {
-      background: rgba(255, 93, 143, 0.12);
-      border: 1px solid rgba(255, 93, 143, 0.35);
+    .pilar-item {
+      background: rgba(255, 117, 151, 0.1);
+      border: 1px solid rgba(255, 117, 151, 0.32);
       border-radius: 12px;
-      padding: 8px 6px;
-      font-size: 0.74rem;
+      padding: 9px 6px;
+      font-size: 0.73rem;
       font-weight: 700;
-      color: var(--gold-bright);
+      color: var(--champagne);
     }
 
-    .firma-carta {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      color: var(--gold);
+    .firma-final {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--champagne);
       text-align: right;
       margin-bottom: 20px;
     }
 
-    .btn-cerrar-carta {
-      background: rgba(245, 207, 134, 0.14);
-      border: 1px solid rgba(245, 207, 134, 0.6);
-      color: var(--gold-bright);
-      padding: 11px 26px;
-      border-radius: 12px;
-      font-family: 'Quicksand', sans-serif;
+    .btn-cerrar-modal {
+      background: rgba(248, 223, 165, 0.14);
+      border: 1px solid rgba(248, 223, 165, 0.55);
+      color: var(--champagne);
+      padding: 11px 24px;
+      border-radius: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
+      font-size: 0.85rem;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <div id="jardin-infinito"></div>
+  <canvas id="canvas-estrellas"></canvas>
+  <div id="lluvia-ramos"></div>
 
-  <main class="escenario">
-    <span class="cinta-real">👑 Feliz Día de la Princesa 👑</span>
+  <main class="contenedor">
+    <span class="pill-superior">✦ Especial Día de la Princesa ✦</span>
 
-    <h1>Un sinfín de ramos para ti, Marely</h1>
+    <header>
+      <h1>Un sinfín de ramos para ti, Marely</h1>
+      <p>
+        Hoy quise regalarte un cielo lleno de flores y decirte sin rodeos lo en serio que me importas.
+      </p>
+    </header>
 
-    <p class="intro-texto">
-      Hoy no quería mandarte un mensaje cualquiera. Quería llenarte la pantalla de flores y decirte con total sinceridad lo que siento por ti.
-    </p>
-
-    <!-- Barra musical con Brillas -->
-    <div class="barra-musica">
-      <div class="musica-info">
-        <div class="ondas" id="ondas">
-          <span></span><span></span><span></span><span></span>
-        </div>
-        <div class="musica-textos">
+    <!-- Reproductor Vinilo para Brillas -->
+    <section class="vinilo-player" aria-label="Reproductor de Brillas">
+      <div class="vinilo-fila">
+        <div class="disco-vinilo" id="disco-vinilo"></div>
+        <div class="vinilo-datos">
+          <span class="etiqueta" id="estado-pista">Banda sonora para ti</span>
           <strong>Brillas · León Larregui</strong>
-          <small id="sub-musica">Dedicada a ti, mi princesa</small>
+          <small id="sub-pista">Toca "Escuchar" para ponerla</small>
         </div>
+        <button type="button" class="btn-reproducir" id="btn-reproducir">▶ Escuchar</button>
       </div>
-      <button type="button" class="btn-audio" id="btn-audio">▶ Escuchar</button>
-    </div>
+      <div class="progreso-barra" id="progreso-barra">
+        <div class="progreso-avance" id="progreso-avance"></div>
+      </div>
+    </section>
 
-    <!-- Altar interactivo de ramos infinitos -->
-    <section class="altar-ramos">
-      <button type="button" class="gran-ramo-btn" id="gran-ramo-btn" aria-label="Enviar ramos a Marely">💐</button>
-      <div class="contador-pill">
-        Ramos cayendo para ti: <strong id="contador-ramos">100</strong> 🌹
+    <!-- Ramo Ilustrado Central -->
+    <section class="vitrina-ramo">
+      <div class="halo-luz"></div>
+      <button type="button" class="ramo-svg-btn" id="ramo-central" aria-label="Tocar ramo de rosas">
+        <svg width="142" height="142" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Envoltorio de papel satinado -->
+          <path d="M44 74L80 144L116 74L98 62H62L44 74Z" fill="url(#papelGrad)" stroke="#F8DFA5" stroke-width="1.6"/>
+          <path d="M54 74L80 136L106 74" fill="rgba(255,255,255,0.08)"/>
+          <!-- Hojas verdes -->
+          <ellipse cx="52" cy="64" rx="14" ry="8" transform="rotate(-32 52 64)" fill="#2D6A4F"/>
+          <ellipse cx="108" cy="64" rx="14" ry="8" transform="rotate(32 108 64)" fill="#2D6A4F"/>
+          <ellipse cx="80" cy="44" rx="10" ry="15" fill="#40916C"/>
+          <!-- Rosas principales -->
+          <circle cx="62" cy="64" r="16" fill="url(#rosa1)"/>
+          <circle cx="62" cy="64" r="9" fill="#FF8FA3" opacity="0.7"/>
+          <circle cx="98" cy="64" r="16" fill="url(#rosa1)"/>
+          <circle cx="98" cy="64" r="9" fill="#FF8FA3" opacity="0.7"/>
+          <circle cx="80" cy="54" r="18" fill="url(#rosaCentral)"/>
+          <circle cx="80" cy="54" r="10" fill="#FFB3C1" opacity="0.8"/>
+          <circle cx="71" cy="74" r="14" fill="url(#rosa2)"/>
+          <circle cx="89" cy="74" r="14" fill="url(#rosa2)"/>
+          <!-- Destellos blancos -->
+          <circle cx="48" cy="48" r="2.5" fill="#FFF3B0"/>
+          <circle cx="114" cy="46" r="2.5" fill="#FFF3B0"/>
+          <circle cx="80" cy="30" r="3" fill="#F8DFA5"/>
+          <!-- Moño dorado -->
+          <path d="M80 106L62 96C59 102 60 110 65 113L80 106Z" fill="#F8DFA5"/>
+          <path d="M80 106L98 96C101 102 100 110 95 113L80 106Z" fill="#F8DFA5"/>
+          <path d="M77 106L68 128M83 106L92 128" stroke="#E5B567" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="80" cy="106" r="5" fill="#E5B567"/>
+          <defs>
+            <linearGradient id="papelGrad" x1="80" y1="62" x2="80" y2="144" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2B325E"/>
+              <stop offset="1" stop-color="#141833"/>
+            </linearGradient>
+            <radialGradient id="rosaCentral" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(76 50) rotate(45) scale(24)">
+              <stop stop-color="#FF758F"/>
+              <stop offset="1" stop-color="#A4133C"/>
+            </radialGradient>
+            <radialGradient id="rosa1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(58 60) rotate(45) scale(22)">
+              <stop stop-color="#FF4D6D"/>
+              <stop offset="1" stop-color="#800F2F"/>
+            </radialGradient>
+            <radialGradient id="rosa2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(70 70) rotate(45) scale(20)">
+              <stop stop-color="#FF8FA3"/>
+              <stop offset="1" stop-color="#C9184A"/>
+            </radialGradient>
+          </defs>
+        </svg>
+      </button>
+
+      <div class="metrica-ramos">
+        <span>Ramos cayendo para ti:</span>
+        <strong id="contador-ramos">100</strong>
+        <span>💐</span>
       </div>
-      <button type="button" class="btn-mas-ramos" id="btn-mas-ramos">
-        ✨ Toca aquí para recibir más ramos
+
+      <button type="button" class="btn-lluvia-extra" id="btn-lluvia-extra">
+        ✨ Toca el ramo o aquí para llenar todo de flores
       </button>
     </section>
 
-    <!-- Botón para abrir la carta -->
-    <button type="button" class="btn-abrir-carta" id="btn-abrir-carta">
+    <!-- Botón de la Carta -->
+    <button type="button" class="btn-carta-principal" id="btn-abrir-carta">
       <span>💌</span>
-      <span>Leer mi carta sincera para ti</span>
+      <span>Abrir mi carta sincera para ti</span>
     </button>
   </main>
 
-  <!-- Modal con la carta extensa -->
-  <section class="modal-carta" id="modal-carta" aria-hidden="true">
-    <div class="pergamino-real">
-      <div class="sello-encabezado">👑💐✨</div>
-      <span class="sub-carta">Sonando: Brillas · Con el corazón en la mano</span>
+  <!-- Modal con la Carta Completa -->
+  <section class="modal-overlay" id="modal-carta" aria-hidden="true">
+    <div class="carta-editorial">
+      <div class="sello-cera">👑</div>
+      <span class="carta-kicker">Sonando: Brillas · Sin filtros ni dudas</span>
       <h2>Feliz Día de la Princesa, Marely</h2>
 
-      <div class="cita-destacada">
+      <div class="frase-brillas">
         “Prefiero mil veces que me digan intenso por demostrar todo lo que siento, antes que quedarme con las ganas de hacerte sentir lo mucho que brillas para mí.”
       </div>
 
-      <div class="cuerpo-carta">Marely, hoy en el Día de la Princesa quise hacerte este detalle porque te mereces todos los ramos del mundo, pero sobre todo te mereces claridad, hechos y palabras que nazcan completamente de verdad.
+      <div class="carta-texto">Marely, hoy en el Día de la Princesa quise hacerte este detalle diferente porque te mereces un sinfín de ramos, pero sobre todo te mereces claridad, hechos y palabras que nazcan completamente del corazón.
 
-A veces la gente tiene miedo de demostrar interés por temor a parecer "intensa", pero contigo me pasa exactamente lo contrario: prefiero ser un intenso que te llena de detalles, que recuerda lo que te gusta y que busca sacarte una sonrisa todos los días, antes que fingir indiferencia cuando lo que siento por ti es tan grande.
+A veces muchas personas se guardan lo que sienten por miedo a parecer "intensas", pero contigo me pasa exactamente lo contrario: prefiero ser un intenso que te llena de detalles, que recuerda lo que te gusta y que busca sacarte una sonrisa todos los días, antes que fingir indiferencia cuando lo que siento por ti es tan grande.
 
-Quiero decírtelo sin rodeos para que no te quede ninguna duda: mis sentimientos hacia ti son completamente serios. No busco algo pasajero ni un juego de un rato; contigo quiero darte lo mejor de mí y construir algo bonito, real y sincero, donde puedas sentirte tranquila, cuidada y valorada tal como eres.
+Quiero decírtelo sin rodeos para que no te quede ni una sola duda: mis sentimientos hacia ti son completamente serios. No busco algo pasajero ni un juego de un rato; contigo quiero darte lo mejor de mí y construir algo bonito, real y sincero, donde puedas sentirte tranquila, cuidada y valorada tal como eres.
 
 Brillas con una luz propia que hace imposible no admirarte, y tus ojos siguen siendo mi mayor debilidad. Gracias por existir y por dejarme demostrarte poco a poco cuánto te quiero.</div>
 
-      <div class="promesas-grid">
-        <div class="promesa-chip">💛 Sentimientos serios</div>
-        <div class="promesa-chip">🌹 Cero miedo a demostrar</div>
-        <div class="promesa-chip">✨ Algo real contigo</div>
+      <div class="pilares-sinceros">
+        <div class="pilar-item">💛 Sentimientos serios</div>
+        <div class="pilar-item">🌹 Intensidad bonita</div>
+        <div class="pilar-item">✨ Algo sincero contigo</div>
       </div>
 
-      <div class="firma-carta">— Siempre sincero contigo, Ángel 👑</div>
-      <button type="button" class="btn-cerrar-carta" id="btn-cerrar-carta">Guardar carta y seguir viendo ramos 💐</button>
+      <div class="firma-final">— Siempre sincero contigo, Ángel ✨</div>
+      <button type="button" class="btn-cerrar-modal" id="btn-cerrar-modal">Guardar carta y seguir viendo ramos 💐</button>
     </div>
   </section>
 
-  <!-- Cambia "princesa.mp4" a "brillas.mp4" si así guardaste el archivo -->
-  <audio id="audio-princesa" src="princesa.mp4" loop preload="metadata"></audio>
+  <!-- Elemento <video> oculto: reproduce .mp4 y .mp3 sin bloqueos en móviles -->
+  <video id="reproductor-brillas" playsinline webkit-playsinline preload="auto" loop style="display:none;"></video>
 
   <script>
-    const jardin = document.getElementById('jardin-infinito');
-    const contadorEl = document.getElementById('contador-ramos');
-    const floresVariadas = ['💐', '🌹', '🌷', '🌸', '🌺', '💐', '✨'];
+    // 1. Fondo animado de estrellas brillantes ("Brillas")
+    const canvas = document.getElementById('canvas-estrellas');
+    const ctx = canvas.getContext('2d');
+    let estrellas = [];
+
+    function ajustarCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      estrellas = Array.from({ length: 65 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.7 + 0.4,
+        alpha: Math.random(),
+        vel: Math.random() * 0.018 + 0.005
+      }));
+    }
+
+    function animarEstrellas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const e of estrellas) {
+        e.alpha += e.vel;
+        if (e.alpha > 1 || e.alpha < 0.15) e.vel *= -1;
+        ctx.beginPath();
+        ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(248, 223, 165, ${e.alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(animarEstrellas);
+    }
+
+    window.addEventListener('resize', ajustarCanvas);
+    ajustarCanvas();
+    animarEstrellas();
+
+    // 2. Lluvia infinita de ramos
+    const lluviaRamos = document.getElementById('lluvia-ramos');
+    const contadorRamosEl = document.getElementById('contador-ramos');
+    const simbolosRamos = ['💐', '🌹', '🌷', '🌸', '💐', '✨'];
     let totalRamos = 100;
 
-    function crearRamoFondo() {
-      const ramo = document.createElement('span');
-      ramo.className = 'ramo-caida';
-      ramo.textContent = floresVariadas[Math.floor(Math.random() * floresVariadas.length)];
+    function crearRamoCayendo() {
+      const el = document.createElement('span');
+      el.className = 'ramo-flotante';
+      el.textContent = simbolosRamos[Math.floor(Math.random() * simbolosRamos.length)];
 
-      const tamano = Math.random() * 20 + 18;
-      const posX = Math.random() * 100;
-      const duracion = Math.random() * 4.5 + 5.5;
-      const vaiven = (Math.random() - 0.5) * 110 + 'px';
-      const opacidad = Math.random() * 0.45 + 0.5;
+      const tam = Math.random() * 18 + 18;
+      const izq = Math.random() * 100;
+      const dur = Math.random() * 4.5 + 5.5;
+      const osc = (Math.random() - 0.5) * 110 + 'px';
 
-      ramo.style.left = posX + 'vw';
-      ramo.style.fontSize = tamano + 'px';
-      ramo.style.animationDuration = duracion + 's';
-      ramo.style.setProperty('--vaiven', vaiven);
-      ramo.style.opacity = opacidad;
+      el.style.left = izq + 'vw';
+      el.style.fontSize = tam + 'px';
+      el.style.animationDuration = dur + 's';
+      el.style.setProperty('--oscilacion', osc);
+      el.style.opacity = (Math.random() * 0.4 + 0.55).toFixed(2);
 
-      jardin.appendChild(ramo);
-      ramo.addEventListener('animationend', () => ramo.remove());
+      lluviaRamos.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
     }
 
-    for (let i = 0; i < 22; i++) {
-      setTimeout(crearRamoFondo, i * 160);
+    for (let i = 0; i < 20; i++) {
+      setTimeout(crearRamoCayendo, i * 170);
     }
-    setInterval(crearRamoFondo, 340);
+    setInterval(crearRamoCayendo, 360);
 
-    function lanzarRafagaRamos(x, y, cantidad = 12) {
+    function estallarRamos(x, y, cantidad = 14) {
       totalRamos += cantidad;
-      contadorEl.textContent = totalRamos;
+      contadorRamosEl.textContent = totalRamos;
 
       for (let i = 0; i < cantidad; i++) {
-        const el = document.createElement('span');
-        el.className = 'ramo-explosion';
-        el.textContent = floresVariadas[Math.floor(Math.random() * floresVariadas.length)];
+        const flor = document.createElement('span');
+        flor.className = 'ramo-toque';
+        flor.textContent = simbolosRamos[Math.floor(Math.random() * simbolosRamos.length)];
 
-        const angulo = (Math.PI * 2 * i) / cantidad + (Math.random() - 0.5) * 0.4;
-        const distancia = 70 + Math.random() * 110;
-        const dx = Math.cos(angulo) * distancia + 'px';
-        const dy = Math.sin(angulo) * distancia - 40 + 'px';
-        const rot = (Math.random() - 0.5) * 360 + 'deg';
+        const ang = (Math.PI * 2 * i) / cantidad + (Math.random() - 0.5) * 0.35;
+        const dist = 65 + Math.random() * 115;
+        flor.style.left = x + 'px';
+        flor.style.top = y + 'px';
+        flor.style.setProperty('--tx', Math.cos(ang) * dist + 'px');
+        flor.style.setProperty('--ty', (Math.sin(ang) * dist - 35) + 'px');
+        flor.style.setProperty('--rot', (Math.random() - 0.5) * 320 + 'deg');
 
-        el.style.left = x + 'px';
-        el.style.top = y + 'px';
-        el.style.setProperty('--dx', dx);
-        el.style.setProperty('--dy', dy);
-        el.style.setProperty('--rot', rot);
-
-        document.body.appendChild(el);
-        el.addEventListener('animationend', () => el.remove());
-
-        setTimeout(crearRamoFondo, i * 45);
+        document.body.appendChild(flor);
+        flor.addEventListener('animationend', () => flor.remove());
+        setTimeout(crearRamoCayendo, i * 40);
       }
     }
 
-    const granRamoBtn = document.getElementById('gran-ramo-btn');
-    const btnMasRamos = document.getElementById('btn-mas-ramos');
-
-    granRamoBtn.addEventListener('click', () => {
-      const rect = granRamoBtn.getBoundingClientRect();
-      lanzarRafagaRamos(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
+    const ramoCentral = document.getElementById('ramo-central');
+    document.getElementById('btn-lluvia-extra').addEventListener('click', () => {
+      const r = ramoCentral.getBoundingClientRect();
+      estallarRamos(r.left + r.width / 2, r.top + r.height / 2, 18);
     });
 
-    btnMasRamos.addEventListener('click', () => {
-      const rect = granRamoBtn.getBoundingClientRect();
-      lanzarRafagaRamos(rect.left + rect.width / 2, rect.top + rect.height / 2, 18);
+    ramoCentral.addEventListener('click', () => {
+      const r = ramoCentral.getBoundingClientRect();
+      estallarRamos(r.left + r.width / 2, r.top + r.height / 2, 16);
     });
 
-    const audio = document.getElementById('audio-princesa');
-    const btnAudio = document.getElementById('btn-audio');
-    const ondas = document.getElementById('ondas');
-    const subMusica = document.getElementById('sub-musica');
+    // 3. Reproductor inteligente para "Brillas" (detecta .mp4 o .mp3 automáticamente)
+    const player = document.getElementById('reproductor-brillas');
+    const btnReproducir = document.getElementById('btn-reproducir');
+    const discoVinilo = document.getElementById('disco-vinilo');
+    const estadoPista = document.getElementById('estado-pista');
+    const subPista = document.getElementById('sub-pista');
+    const progresoBarra = document.getElementById('progreso-barra');
+    const progresoAvance = document.getElementById('progreso-avance');
 
-    function reproducirMusica() {
-      audio.play().then(() => {
-        btnAudio.textContent = '❚❚ Pausar';
-        ondas.classList.add('activas');
-        subMusica.textContent = 'Sonando para Marely...';
+    const posiblesArchivos = [
+      'brillas.mp4',
+      'brillas.mp3',
+      'Brillas.mp4',
+      'Brillas.mp3',
+      'princesa.mp4',
+      'princesa.mp3'
+    ];
+    let indiceArchivo = 0;
+    let archivoCargado = false;
+
+    function probarSiguienteArchivo() {
+      if (indiceArchivo >= posiblesArchivos.length) {
+        subPista.textContent = 'Sube el audio como brillas.mp4 o brillas.mp3';
+        return;
+      }
+      player.src = posiblesArchivos[indiceArchivo];
+      player.load();
+    }
+
+    player.addEventListener('canplay', () => {
+      archivoCargado = true;
+    });
+
+    player.addEventListener('error', () => {
+      indiceArchivo++;
+      probarSiguienteArchivo();
+    });
+
+    probarSiguienteArchivo();
+
+    function iniciarAudio() {
+      if (!player.src) probarSiguienteArchivo();
+      player.play().then(() => {
+        btnReproducir.textContent = '❚❚ Pausar';
+        discoVinilo.classList.add('girando');
+        estadoPista.textContent = 'Sonando ahora';
+        subPista.textContent = 'Dedicada a ti, Marely ✨';
       }).catch(() => {
-        subMusica.textContent = 'Toca "Escuchar" para activar';
+        subPista.textContent = archivoCargado
+          ? 'Toca de nuevo "Escuchar" para activar'
+          : 'Verifica que brillas.mp4 o brillas.mp3 esté en el repo';
       });
     }
 
-    btnAudio.addEventListener('click', () => {
-      if (audio.paused) {
-        reproducirMusica();
+    btnReproducir.addEventListener('click', () => {
+      if (player.paused) {
+        iniciarAudio();
       } else {
-        audio.pause();
-        btnAudio.textContent = '▶ Escuchar';
-        ondas.classList.remove('activas');
-        subMusica.textContent = 'En pausa';
+        player.pause();
+        btnReproducir.textContent = '▶ Escuchar';
+        discoVinilo.classList.remove('girando');
+        estadoPista.textContent = 'En pausa';
       }
     });
 
-    const modalCarta = document.getElementById('modal-carta');
-    const btnAbrirCarta = document.getElementById('btn-abrir-carta');
-    const btnCerrarCarta = document.getElementById('btn-cerrar-carta');
+    player.addEventListener('timeupdate', () => {
+      if (player.duration > 0) {
+        progresoAvance.style.width = `${(player.currentTime / player.duration) * 100}%`;
+      }
+    });
 
-    btnAbrirCarta.addEventListener('click', () => {
+    progresoBarra.addEventListener('click', (e) => {
+      if (!player.duration) return;
+      const rect = progresoBarra.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      player.currentTime = pos * player.duration;
+    });
+
+    // 4. Apertura y cierre de la carta
+    const modalCarta = document.getElementById('modal-carta');
+    document.getElementById('btn-abrir-carta').addEventListener('click', () => {
       modalCarta.classList.add('abierto');
       modalCarta.setAttribute('aria-hidden', 'false');
-      if (audio.paused) reproducirMusica();
-      for (let i = 0; i < 15; i++) {
-        setTimeout(crearRamoFondo, i * 60);
+      if (player.paused) iniciarAudio();
+      for (let i = 0; i < 16; i++) {
+        setTimeout(crearRamoCayendo, i * 55);
       }
     });
 
-    btnCerrarCarta.addEventListener('click', () => {
+    document.getElementById('btn-cerrar-modal').addEventListener('click', () => {
       modalCarta.classList.remove('abierto');
       modalCarta.setAttribute('aria-hidden', 'true');
     });
